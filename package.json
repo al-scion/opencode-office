@@ -21,7 +21,18 @@
     "access": "public",
     "provenance": true
   },
-  "files": ["dist", "src/version.ts"],
+  "files": [
+    "dist",
+    "src/version.ts"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir dist --target bun && bun x tsc",
+    "lint": "biome lint .",
+    "lint:fix": "biome check --write --unsafe .",
+    "format": "biome format --write .",
+    "test": "bun test",
+    "publish:npm": "bash ./scripts/publish.sh"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@opencode-ai/plugin": "^1.1.16",

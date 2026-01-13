@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#MISE description="Fix lint issues and format using Biome"
-
-bun x biome check --write --unsafe .

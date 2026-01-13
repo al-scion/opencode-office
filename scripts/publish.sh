@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-#MISE description="Publish to npm registry"
-#MISE depends=["setup", "build"]
-#USAGE flag "-t --tag <tag>" "Tag to publish with" default="latest"
-#USAGE flag "-d --dry-run" "Perform a dry run of the publish process"
+# Publish to npm registry
 
 set -e
 
+TAG=${1:-latest}
+DRY_RUN=${2:-false}
+
 echo "Publishing to npm"
-echo " > with tag: ${usage_tag}..."
+echo " > with tag: ${TAG}..."
 echo " > npm version: $(npm --version)"
 
 # For 'next' tag, bump version to a prerelease to avoid conflicts
-if [ "${usage_tag}" = "next" ]; then
+if [ "${TAG}" = "next" ]; then
 	# Count commits since last tag for a semantic build number
 	LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 	if [ -n "$LAST_TAG" ]; then
@@ -24,15 +24,16 @@ if [ "${usage_tag}" = "next" ]; then
 		echo " > total commits: ${BUILD_NUMBER}"
 	fi
 	CURRENT_VERSION=$(jq -r '.version' package.json)
-	PRERELEASE_VERSION="$(semver get release "$CURRENT_VERSION")-next.${BUILD_NUMBER}"
+	# Using bun to run semver if not in path
+	PRERELEASE_VERSION="$(bun x semver get release "$CURRENT_VERSION")-next.${BUILD_NUMBER}"
 	echo " > bumping version: ${CURRENT_VERSION} -> ${PRERELEASE_VERSION}"
 
-	if [ "${usage_dry_run}" != "true" ]; then
+	if [ "${DRY_RUN}" != "true" ]; then
 		npm version "${PRERELEASE_VERSION}" --no-git-tag-version --allow-same-version
 	fi
 fi
 
-if [ "${usage_dry_run}" != "true" ]; then
+if [ "${DRY_RUN}" != "true" ]; then
 	# Determine if we should use provenance
 	# Only enable in CI environments with OIDC support
 	PROVENANCE_FLAG=""
@@ -48,10 +49,9 @@ if [ "${usage_dry_run}" != "true" ]; then
 	# Publish directly from source (allows provenance generation in CI)
 	npm publish \
 		--access public \
-		--tag "${usage_tag}" \
+		--tag "${TAG}" \
 		$PROVENANCE_FLAG
 	echo "Published successfully!"
 else
 	echo "Dry run mode - skipping actual publish"
 fi
-

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#MISE description="Format the project using Biome"
-
-bun x biome format --write .
