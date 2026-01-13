@@ -5,9 +5,12 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "types": ["bun-types"]
-  }
+  },
+  "include": ["src/**/*"]
 }

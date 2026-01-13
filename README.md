@@ -57,11 +57,11 @@ Microsoft Office Plugin
 
 ## Author
 
-- <->
+- [al-scion](https://github.com/al-scion)
 
 ## Repository
 
--
+- [opencode-office](https://github.com/al-scion/opencode-office)
 
 ## Contributing
 
