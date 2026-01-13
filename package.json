@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/al-scion/opencode-office"
+    "url": "git+https://github.com/al-scion/opencode-office.git"
   },
   "publishConfig": {
     "access": "public",
