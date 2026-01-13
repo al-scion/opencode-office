@@ -2,13 +2,13 @@
 
 ## Build & Test Commands
 
-- **Build**: `mise run build` or `bun build ./src/index.ts --outdir dist --target bun`
-- **Test**: `mise run test` or `bun test`
-- **Single Test**: `bun test BackgroundTask.test.ts` (use file glob pattern)
+- **Build**: `npm run build`
+- **Test**: `npm run test` or `bun test`
+- **Single Test**: `bun test <file-pattern>`
 - **Watch Mode**: `bun test --watch`
-- **Lint**: `mise run lint` (eslint)
-- **Fix Lint**: `mise run lint:fix` (eslint --fix)
-- **Format**: `mise run format` (prettier)
+- **Lint**: `npm run lint` (biome)
+- **Fix & Format**: `npm run lint:fix` (biome check --write)
+- **Format**: `npm run format` (biome format)
 
 ## Code Style Guidelines
 
@@ -18,19 +18,19 @@
 - Group imports: external libraries first, then internal modules
 - Use explicit file extensions (`.ts`) for internal imports
 
-### Formatting (Prettier)
+### Formatting & Linting (Biome)
 
-- **Single quotes** (`singleQuote: true`)
+- **Single quotes**: enabled
 - **Line width**: 100 characters
-- **Tab width**: 2 spaces
-- **Trailing commas**: ES5 (no trailing commas in function parameters)
-- **Semicolons**: enabled
+- **Indent style**: space (2 width)
+- **Trailing commas**: ES5
+- **Semicolons**: always
 
 ### TypeScript & Naming
 
 - **NeverNesters**: avoid deeply nested structures. Always exit early.
 - **Strict mode**: enforced (`"strict": true`)
-- **Classes**: PascalCase (e.g., `BackgroundTask`, `BackgroundTaskManager`)
+- **Classes**: PascalCase (e.g., `OfficePlugin`)
 - **Methods/properties**: camelCase
 - **Status strings**: use union types (e.g., `'pending' | 'running' | 'completed' | 'failed' | 'cancelled'`)
 - **Explicit types**: prefer explicit type annotations over inference
@@ -44,9 +44,8 @@
 
 ### Linting Rules
 
-- `@typescript-eslint/no-explicit-any`: warn (avoid `any` type)
-- `no-console`: error (minimize console logs)
-- `prettier/prettier`: error (formatting violations are errors)
+- Biome `recommended` rules are enabled.
+- `no-console`: minimize console logs in production code, prefer `ctx.client.app.log`.
 
 ## Testing
 
@@ -54,12 +53,9 @@
 - Style: Descriptive nested test cases with clear expectations
 - Assertion library: `expect()` (vitest)
 
-## Memory
-
-- Store temporary data in `.memory/` directory (gitignored)
-
 ## Project Context
 
 - **Type**: ES Module package for Bun modules
 - **Target**: Bun runtime, ES2021+
-- **Purpose**: General-purpose Bun module development
+- **Purpose**: Microsoft Office plugin for OpenCode
+- **Release**: Automated via Release Please and GitHub Actions (OIDC)
