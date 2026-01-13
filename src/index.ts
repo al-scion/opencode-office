@@ -1,4 +1,4 @@
-import { type Plugin } from '@opencode-ai/plugin';
+import type { Plugin } from '@opencode-ai/plugin';
 
 export const OfficePlugin: Plugin = async (ctx) => {
   console.log('Microsoft Office Plugin Loaded Successfully!');

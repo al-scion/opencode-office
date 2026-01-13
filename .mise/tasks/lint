@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-#MISE description="Run ESLint"
-bun x eslint . --ext .ts
+#MISE description="Lint the project using Biome"
+
+bun x biome lint .
