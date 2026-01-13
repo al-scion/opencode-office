@@ -1,43 +1,28 @@
 {
   "name": "opencode-office",
-  "version": "0.1.2",
+  "version": "0.1.10",
   "description": "Microsoft Office plugin for OpenCode",
   "type": "module",
-  "license": "MIT",
-  "author": {
-    "name": "al-scion",
-    "email": "abel@withscion.com"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
+  "author": "al-scion",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/al-scion/opencode-office.git"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir dist --target bun && bun x tsc",
-    "lint": "biome lint src",
-    "lint:fix": "biome check --write --unsafe src",
-    "format": "biome format --write src",
-    "test": "bun test",
-    "publish:npm": "bun ./scripts/publish.ts"
+    "checktypes": "tsc --noEmit",
+    "build": "bun build ./src/index.ts --outdir ./dist --target bun",
+    "release": "bun run build && npm publish --no-provenance"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.3.11",
     "@opencode-ai/plugin": "^1.1.16",
-    "@types/node": "^20.11.5",
     "@types/bun": "^1.3.5",
-    "vitest": "^3.2.4"
+    "@types/node": "^25.0.7",
+    "ultracite": "^7.0.11"
   }
 }
