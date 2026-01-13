@@ -31,7 +31,7 @@
     "lint:fix": "biome check --write --unsafe src",
     "format": "biome format --write src",
     "test": "bun test",
-    "publish:npm": "bash ./scripts/publish.sh"
+    "publish:npm": "bun ./scripts/publish.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
