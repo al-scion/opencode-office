@@ -1,71 +1,55 @@
 # opencode-office
 
-Microsoft Office Plugin
-
-> A Bun module created from the [bun-module](https://github.com/zenobi-us/bun-module) template
+Microsoft Office Plugin for OpenCode.
 
 ## Features
 
 - 🏗️ TypeScript-based module architecture
-- 🔧 Mise task runner integration
+- ⚡ Biome for high-performance linting and formatting
 - 📦 Bun/npm build tooling
-- ✨ ESLint + Prettier formatting
 - 🧪 Vitest testing setup
-- 🚀 GitHub Actions CI/CD
-- 📝 Release automation with release-please
+- 🚀 GitHub Actions CI/CD with Trusted Publishing (OIDC)
+- 📝 Automated releases with Release Please
 
 ## Getting Started
 
-1. **Clone this template:**
-
-   ```bash
-   cp -r bun-module your-module-name
-   cd your-module-name
-   ```
-
-2. **Update package.json:**
-   - Change `name` to your module name
-   - Update `description`
-   - Update `repository.url`
-
-3. **Install dependencies:**
+1. **Install dependencies:**
 
    ```bash
    bun install
    ```
 
-4. **Implement your module in `src/index.ts`:**
+2. **Development:**
+   - `npm run build` - Build the module
+   - `npm run lint` - Lint code
+   - `npm run format` - Format code
+   - `npm run test` - Run tests
 
-   ```typescript
-   export function hello(name: string): string {
-     return `Hello, ${name}!`;
-   }
-   ```
+## Releasing & Publishing
 
-5. **Test your module:**
-   ```bash
-   mise run test
-   ```
+This project uses **Release Please** for automated versioning and changelogs.
 
-## Development
+### 1. Conventional Commits
 
-- `mise run build` - Build the module
-- `mise run test` - Run tests
-- `mise run lint` - Lint code
-- `mise run lint:fix` - Fix linting issues
-- `mise run format` - Format code with Prettier
+We follow the [Conventional Commits](https://www.conventionalcommits.org/) specification for all changes:
+
+- `fix:` bumps patch version (0.1.0 -> 0.1.1)
+- `feat:` bumps minor version (0.1.0 -> 0.2.0)
+- `feat!:` or `fix!:` bumps major version (breaking changes)
+
+### 2. Automated Release Workflow
+
+1. Push your commits to the `main` branch.
+2. Release Please will automatically open/update a "Release PR" with the new version and changelog.
+3. Merge the Release PR to trigger the automated build and publish to npm.
+
+### 3. NPM Trusted Publishing
+
+Authentication with npm is handled automatically via GitHub Actions OIDC (OpenID Connect). No manual tokens are required.
 
 ## Author
 
 - [al-scion](https://github.com/al-scion)
-
-## Repository
-
-- [opencode-office](https://github.com/al-scion/opencode-office)
-
-## Contributing
-
-Contributions are welcome! Please file issues or submit pull requests on the GitHub repository.
 
 ## License
 
