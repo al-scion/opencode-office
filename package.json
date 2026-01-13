@@ -1,6 +1,6 @@
 {
   "name": "opencode-office",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Microsoft Office plugin for OpenCode",
   "type": "module",
   "license": "MIT",
