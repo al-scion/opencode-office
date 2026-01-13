@@ -27,9 +27,9 @@
   ],
   "scripts": {
     "build": "bun build ./src/index.ts --outdir dist --target bun && bun x tsc",
-    "lint": "biome lint .",
-    "lint:fix": "biome check --write --unsafe .",
-    "format": "biome format --write .",
+    "lint": "biome lint src",
+    "lint:fix": "biome check --write --unsafe src",
+    "format": "biome format --write src",
     "test": "bun test",
     "publish:npm": "bash ./scripts/publish.sh"
   },
