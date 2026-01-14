@@ -1,8 +1,12 @@
 import type { Plugin } from "@opencode-ai/plugin";
+import { copyManifest } from "./utils";
 
 export const OfficePlugin: Plugin = async (ctx) => {
-	console.log("Microsoft Office Plugin Loaded Successfully!")
-	return {};
+  console.log("Microsoft Office Plugin Loaded Successfully!");
+  await copyManifest();
+  console.log("Manifest copied successfully!");
+
+  return {};
 };
 
 export default OfficePlugin;

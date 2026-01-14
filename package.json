@@ -1,6 +1,6 @@
 {
   "name": "opencode-office",
-  "version": "0.1.10",
+  "version": "0.1.12",
   "description": "Microsoft Office plugin for OpenCode",
   "type": "module",
   "author": "al-scion",
@@ -15,7 +15,8 @@
   ],
   "scripts": {
     "checktypes": "tsc --noEmit",
-    "build": "bun build ./src/index.ts --outdir ./dist --target bun",
+    "build": "bun run scripts/build.ts",
+    "login": "npm login",
     "release": "bun run build && npm publish --no-provenance"
   },
   "devDependencies": {
