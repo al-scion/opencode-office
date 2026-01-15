@@ -1,12 +1,8 @@
-import { existsSync } from "node:fs";
-import { cp, rm } from "node:fs/promises";
-import { build } from "bun";
-
 console.log("🧹 Cleaning dist...");
-await rm("./dist", { recursive: true, force: true });
+await Bun.$`rm -rf dist`.quiet();
 
 console.log("📦 Bundling...");
-const result = await build({
+const result = await Bun.build({
   entrypoints: ["./src/index.ts"],
   outdir: "./dist",
   target: "bun",
@@ -21,8 +17,5 @@ if (!result.success) {
 }
 
 console.log("📂 Copying assets...");
-if (existsSync("assets")) {
-  await cp("assets", "dist/assets", { recursive: true });
-}
-
+await Bun.$`cp -r assets dist/assets 2>/dev/null || true`.quiet();
 console.log("✅ Build complete!");

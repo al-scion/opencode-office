@@ -4,7 +4,6 @@ import { copyManifest } from "./utils";
 export const OfficePlugin: Plugin = async (ctx) => {
   console.log("Microsoft Office Plugin Loaded Successfully!");
   await copyManifest();
-  console.log("Manifest copied successfully!");
 
   return {};
 };

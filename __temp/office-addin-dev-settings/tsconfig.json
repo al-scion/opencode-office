@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "importHelpers": true,
+    "outDir": "lib",
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["lib", "node_modules"],
+}
